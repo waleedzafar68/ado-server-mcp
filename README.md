@@ -326,8 +326,3 @@ npm run record:contracts # live read-only recording (VPN; PAT supplied in ADO_PA
 ```
 
 The contract recorder uses `ADO_RECORD_FLAVOR` (`server-2020` or `server-25h2`), `ADO_RECORD_SERVER_URL`, `ADO_RECORD_COLLECTION`, `ADO_RECORD_PROJECT` and `ADO_RECORD_REPOSITORY` for its target. The generic example defaults are Server 2020, `https://devops.example.com/tfs`, `DemoCollection`, `DemoProject` and `ado-server-mcp`. It requires a completed build with task logs. Optional `ADO_RECORD_TFVC_COLLECTION` and `ADO_RECORD_TFVC_PATH` enable live TFVC recording only after that scope is approved; leave both unset while the live TFVC hold applies. Supply `ADO_PAT` only to the recorder process, never the HTTP service. Review local recordings before use. All recorded `tests/contracts/*.json` files are ignored and must never be committed, including in private repositories.
-
-
-## Public snapshot status
-
-This generic snapshot excludes private git history, internal deployment evidence and recorded contract JSON fixtures. Synthetic tests run without internal network access. Recorded-contract replay is skipped until you record and review your own fixture. Example hosts, collections and paths must be replaced for your installation. Local automated and container checks have passed. Internal-network deployment and real-client PoC validation remain pending. No license file has been added. No npm package or container image publication is implied.
