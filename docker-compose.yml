@@ -1,0 +1,23 @@
+services:
+  ado-server-mcp:
+    build: .
+    image: ado-server-mcp:0.1.0
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # Trust the internal CA that signed devops.example.com. Put the PEM file at ./certs/ca.crt.
+      # If the file is missing, Node logs a warning and falls back to the public CA store.
+      NODE_EXTRA_CA_CERTS: /etc/ado-mcp/ca/ca.crt
+    # Plain HTTP carrying PATs: published on loopback only, for a reverse proxy on the same host.
+    # If the proxy runs elsewhere, publish on a private interface only, never on every interface.
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./certs:/etc/ado-mcp/ca:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

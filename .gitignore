@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.env
+*.log
+certs/
+
+# Internal contract recordings are local-only and must never enter Git.
+/tests/contracts/*.json
